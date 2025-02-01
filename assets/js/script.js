@@ -37,17 +37,17 @@ $(document).ready(function () {
         }, 500, 'linear')
     });
 
-    // <!-- emailjs to mail contact form data -->
+    
     $(document).ready(function () {
-        emailjs.init("Vwb1u79NdMpa0IPl6"); // Use your Public Key
+        emailjs.init("Vwb1u79NdMpa0IPl6"); 
     
         $("#contact-form").submit(function (event) {
-            event.preventDefault(); // Prevent page refresh
+            event.preventDefault(); 
     
             emailjs.sendForm("service_wcoi6c5", "template_4qv1uer", "#contact-form")
                 .then(function (response) {
                     console.log("SUCCESS!", response.status, response.text);
-                    $("#contact-form")[0].reset(); // Reset form after successful submission
+                    $("#contact-form")[0].reset(); 
                     alert("Form Submitted Successfully!");
                 }, function (error) {
                     console.log("FAILED...", error);
@@ -58,7 +58,7 @@ $(document).ready(function () {
     
     
     
-    // <!-- emailjs to mail contact form data -->
+    
 
 });
 
