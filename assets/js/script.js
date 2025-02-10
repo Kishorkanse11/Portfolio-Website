@@ -15,7 +15,7 @@ $(document).ready(function () {
             document.querySelector('#scroll-top').classList.remove('active');
         }
 
-        // scroll spy
+        // Scroll spy
         $('section').each(function () {
             let height = $(this).height();
             let offset = $(this).offset().top - 200;
@@ -29,38 +29,60 @@ $(document).ready(function () {
         });
     });
 
-    // smooth scrolling
+    // Smooth scrolling
     $('a[href*="#"]').on('click', function (e) {
         e.preventDefault();
         $('html, body').animate({
             scrollTop: $($(this).attr('href')).offset().top,
-        }, 500, 'linear')
+        }, 500, 'linear');
     });
 
-    // <!-- emailjs to mail contact form data -->
-    $(document).ready(function () {
-        emailjs.init("Vwb1u79NdMpa0IPl6"); // Use your Public Key
+    // Handle form submission
+   // Contact Form Submission
+$('#index').submit(function(e) {
+    e.preventDefault();
+    const form = $(this);
+    const button = form.find('button[type="submit"]');
+    const buttonText = button.html();
     
-        $("#contact-form").submit(function (event) {
-            event.preventDefault(); // Prevent page refresh
+    button.html('Sending...').prop('disabled', true);
     
-            emailjs.sendForm("service_wcoi6c5", "template_4qv1uer", "#contact-form")
-                .then(function (response) {
-                    console.log("SUCCESS!", response.status, response.text);
-                    $("#contact-form")[0].reset(); // Reset form after successful submission
-                    alert("Form Submitted Successfully!");
-                }, function (error) {
-                    console.log("FAILED...", error);
-                    alert("Form Submission Failed! Please Try Again.");
+    $.ajax({
+        url: form.attr('action'),
+        type: form.attr('method'),
+        data: form.serialize(),
+        success: function(response) {
+            if(response.success) {
+                form.trigger('reset');
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Message Sent!',
+                    text: 'Thank you for reaching out. I will respond soon!'
                 });
-        });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong! Please try again.'
+                });
+            }
+        },
+        error: function() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Failed to send message. Please check your connection!'
+            });
+        },
+        complete: function() {
+            button.html(buttonText).prop('disabled', false);
+        }
     });
-    
-    
-    
-    // <!-- emailjs to mail contact form data -->
+});
 
 });
+
+
 
 document.addEventListener('visibilitychange',
     function () {
@@ -201,7 +223,7 @@ var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
 (function () {
     var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
     s1.async = true;
-    s1.src = 'https://embed.tawk.to/60df10bf7f4b000ac03ab6a8/1f9jlirg6';
+    s1.src = 'https://embed.tawk.to/679e5c81825083258e0ee911/1ij19in3f';
     s1.charset = 'UTF-8';
     s1.setAttribute('crossorigin', '*');
     s0.parentNode.insertBefore(s1, s0);
