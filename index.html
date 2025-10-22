@@ -180,6 +180,17 @@
         .timeline-item:last-child::after {
             display: none;
         }
+        
+        /* Added space between navbar and hero content */
+        .home {
+            padding-top: 80px;
+        }
+        
+        /* Additional AI skills styling */
+        .ai-skill {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -211,6 +222,8 @@
 <section class="home" id="home">
     <div id="particles-js"></div>
     <div class="content">
+        <!-- Added space between navbar and text -->
+        <div style="margin-top: 20px;"></div>
         <h2>Hi There,<br/> I'm Kishor <span>Kanse</span></h2>
         <p>I am into <span class="typing-text"></span></p>
         <a href="#about" class="btn"><span>About Me</span>
@@ -239,7 +252,7 @@
         <div class="content">
             <h3>I'm Kishor <span class="premium-badge">PRO</span></h3>
             <span class="tag">Full Stack Developer</span>
-            <p>I am a passionate Full-Stack Developer based in Pune, India with over 3 years of experience building scalable web applications. Currently pursuing a Bachelor's in Computer Science, I specialize in modern technologies like React, Node.js, and MongoDB. My goal is to create impactful digital solutions while continuously enhancing my coding expertise.</p>
+            <p>I am a passionate Full-Stack Developer based in Pune, India with over 3 years of experience building scalable web applications. Currently pursuing a Master's in Computer Science, I specialize in modern technologies like React, Node.js, and MongoDB. My goal is to create impactful digital solutions while continuously enhancing my coding expertise.</p>
             <div class="box-container">
                 <div class="box">
                     <p><span>email: </span> kishorkanse11@gmail.com</p>
@@ -315,6 +328,43 @@
                     <span>Adobe XD</span>
                 </div>
             </div>
+            <!-- New AI and Additional Skills -->
+            <div class="bar">
+                <div class="info">
+                    <img src="https://img.icons8.com/color/48/000000/python.png" alt="Python Icon"/>
+                    <span>Python</span>
+                </div>
+            </div>
+            <div class="bar">
+                <div class="info">
+                    <img src="https://img.icons8.com/color/48/000000/artificial-intelligence.png" alt="AI Icon"/>
+                    <span>Machine Learning</span>
+                </div>
+            </div>
+            <div class="bar">
+                <div class="info">
+                    <img src="https://img.icons8.com/color/48/000000/api.png" alt="API Icon"/>
+                    <span>REST APIs</span>
+                </div>
+            </div>
+            <div class="bar">
+                <div class="info">
+                    <img src="https://img.icons8.com/color/48/000000/amazon-web-services.png" alt="AWS Icon"/>
+                    <span>AWS</span>
+                </div>
+            </div>
+            <div class="bar">
+                <div class="info">
+                    <img src="https://img.icons8.com/color/48/000000/docker.png" alt="Docker Icon"/>
+                    <span>Docker</span>
+                </div>
+            </div>
+            <div class="bar">
+                <div class="info">
+                    <img src="https://img.icons8.com/color/48/000000/cyber-security.png" alt="Security Icon"/>
+                    <span>Cyber Security</span>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -326,12 +376,22 @@
     <div class="box-container">
         <div class="box">
             <div class="image">
-                <img draggable="false" src="./assets/images/educat/WhatsApp Image 2025-01-19 at 13.17.41_7d499200.jpg" alt="Bachelor Degree" loading="lazy">
+                <img draggable="false" src="./assets/images/educat/WhatsApp Image 2025-01-19 at 13.17.41_7d499200.jpg" alt="Master Degree" loading="lazy">
+            </div>
+            <div class="content">
+                <h3>Master in Computer Science</h3>
+                <p>Yashwantrao Mohite Arts, Science and Commerce</p>
+                <h4>2025-2027 | Pursuing</h4>
+            </div>
+        </div>
+        <div class="box">
+            <div class="image">
+                <img draggable="false" src="./assets/images/educat/Screenshot 2025-01-19 125328.png" alt="Bachelor Degree" loading="lazy">
             </div>
             <div class="content">
                 <h3>Bachelor in Computer Science</h3>
                 <p>Yashwantrao Mohite Arts, Science and Commerce</p>
-                <h4>2022-2025 | Pursuing</h4>
+                <h4>2022-2025 | Completed</h4>
             </div>
         </div>
         <div class="box">
@@ -451,24 +511,15 @@
     <h2 class="heading section-title"><i class="fas fa-trophy"></i> My <span>Achievements</span></h2>
     <div class="container">
         <div class="achievement-card">
-            <h3>Hackathon Winner <span class="premium-badge">1st Place</span></h3>
+            <h3>Hackathon Winner - Cyber Security Domain <span class="premium-badge">1st Place</span></h3>
             <p class="date">March 2023</p>
-            <p>Won first place in the "Code for Change" hackathon organized by Tech Innovators Pune. Developed a real-time disaster management system that connects volunteers with affected communities during emergencies.</p>
+            <p>Won first place in the "Code for Change" hackathon organized by Tech Innovators Pune. Developed "FusionHunter" - an AI-based smart system that is a self-learning automated vulnerability scanner.</p>
+            <p>FusionHunter automatically scans websites for vulnerabilities, identifies weaknesses, and improves itself with each run by learning from its results to become more effective over time.</p>
             <div class="tech-used">
-                <span class="tech-tag">React</span>
-                <span class="tech-tag">Node.js</span>
-                <span class="tech-tag">Socket.io</span>
-                <span class="tech-tag">MongoDB</span>
-            </div>
-        </div>
-        <div class="achievement-card">
-            <h3>Best UI/UX Design Award</h3>
-            <p class="date">October 2022</p>
-            <p>Received recognition for outstanding UI/UX design in the "Web Warriors" competition for creating an intuitive and accessible educational platform for underprivileged students.</p>
-            <div class="tech-used">
-                <span class="tech-tag">Adobe XD</span>
-                <span class="tech-tag">Figma</span>
-                <span class="tech-tag">HTML/CSS</span>
+                <span class="tech-tag">AI/ML</span>
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Cyber Security</span>
+                <span class="tech-tag">Automation</span>
             </div>
         </div>
         <div class="achievement-card">
@@ -486,11 +537,29 @@
         <div class="container right">
             <div class="content">
                 <div class="tag">
+                    <h2>Freelance</h2>
+                </div>
+                <div class="desc">
+                    <h3>Full Stack Developer</h3>
+                    <p>Jun 2023 - Present</p>
+                    <p>Currently providing freelance web development services to clients worldwide, building custom web applications and solutions using modern technologies.</p>
+                    <ul>
+                        <li>Developing responsive web applications for international clients</li>
+                        <li>Implementing e-commerce solutions with secure payment gateways</li>
+                        <li>Creating custom CMS and admin panels for client requirements</li>
+                        <li>Optimizing website performance and SEO for better visibility</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container left">
+            <div class="content">
+                <div class="tag">
                     <h2>Self Employed</h2>
                 </div>
                 <div class="desc">
                     <h3>Full Stack Developer</h3>
-                    <p>Oct 2021 - Present</p>
+                    <p>Oct 2021 - May 2023</p>
                     <p>Developed 10+ full-stack projects, including portfolio websites, e-commerce platforms, and real-time applications using React, Node.js, and MySQL/MongoDB. Implemented responsive designs and optimized performance for better user experience.</p>
                     <ul>
                         <li>Built and deployed 5+ production-ready web applications</li>
@@ -500,7 +569,7 @@
                 </div>
             </div>
         </div>
-        <div class="container left">
+        <div class="container right">
             <div class="content">
                 <div class="tag">
                     <h2>Freelance</h2>
@@ -517,28 +586,6 @@
                 </div>
             </div>
         </div>
-        <div class="container right">
-            <div class="content">
-                <div class="tag">
-                    <h2>Tech Mentor</h2>
-                </div>
-                <div class="desc">
-                    <h3>Coding Instructor</h3>
-                    <p>Mar 2022 - Dec 2022</p>
-                    <p>Mentored 50+ students in web development fundamentals, helping them build their first projects and prepare for technical interviews. Created comprehensive learning materials and conducted hands-on coding sessions.</p>
-                    <ul>
-                        <li>Taught HTML, CSS, JavaScript, and React fundamentals</li>
-                        <li>Helped 90% of students secure internships or freelance projects</li>
-                        <li>Developed project-based curriculum for practical learning</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="morebtn">
-        <a href="/experience" class="btn"><span>View All</span>
-            <i class="fas fa-arrow-right"></i>
-        </a>
     </div>
 </section>
 
