@@ -1,437 +1,137 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap');
+$(document).ready(function () {
 
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  text-decoration: none;
-  outline: none; border: none;
-  text-transform: capitalize;
-  transition: all .2s linear;
-}
-html{
-  font-size: 62.5%;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
-}
-body{
-  background: #f7f7f7;
-  font-family: 'Poppins', sans-serif;
-}
+    $('#menu').click(function () {
+        $(this).toggleClass('fa-times');
+        $('.navbar').toggleClass('nav-toggle');
+    });
 
-*::selection{
-  background: #2b3dda;
-  color: #fff;
-}
+    $(window).on('scroll load', function () {
+        $('#menu').removeClass('fa-times');
+        $('.navbar').removeClass('nav-toggle');
 
-html{
-  font-size: 62.5%;
-  overflow-x: hidden;
-}
-html::-webkit-scrollbar{
-  width: .8rem;
-}
-html::-webkit-scrollbar-track{
-  background: rgb(235, 202, 245);
-}
-html::-webkit-scrollbar-thumb{
-  background: #420177;
-}
+        if (window.scrollY > 60) {
+            document.querySelector('#scroll-top').classList.add('active');
+        } else {
+            document.querySelector('#scroll-top').classList.remove('active');
+        }
+    });
+});
 
-/* pre loader start */
-.loader-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 10000;
-  background: #e6eff1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-}
-.loader-container.fade-out {
-  top: -120%;
-}
-/* pre loader end */
+document.addEventListener('visibilitychange',
+    function () {
+        if (document.visibilityState === "visible") {
+            document.title = "Projects | Portfolio Jigar Sable";
+            $("#favicon").attr("href", "/assets/images/favicon.png");
+        }
+        else {
+            document.title = "Come Back To Portfolio";
+            $("#favicon").attr("href", "/assets/images/favhand.png");
+        }
+    });
 
-/* navbar starts */
-header{
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.7rem 10%;
-  height: 6.5rem;
-  background-color: #fff;
-  box-shadow: 0 1px 4px rgba(146,161,176,.3);
-}
-section{
-  min-height: 100vh;
-  padding: 2rem 9%;
-}
-.heading{
-  font-size: 3.5rem;
-  color: rgb(32, 32, 32);
-  font-weight: 800;
-  text-align: center;
-}
-.heading span{
-  color: rgb(115, 3, 167);
-}
-header .logo{
-  font-size: 1.9rem;
-  font-weight: 800;
-  text-decoration: none;
-  color: #0E2431;
-}
-header .logo i {
-  font-size: 2.2rem;
-}
-header .logo:hover {
-  color: #fc8c05;
-}
-header .navbar ul{
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-header .navbar li{
-  margin-left: 2.5rem;
-}
-header .navbar ul li a{
-  font-size: 1.57rem;
-  color: #0E2431;
-  font-weight: 600;
-  text-decoration: none;
-  letter-spacing: 0.04rem;
-}
-header .navbar ul li a.active,
-header .navbar ul li a:hover{
-  color: #011aff;
-  border-bottom: .2rem solid #011aff;
-  padding: .5rem 0;
-}
-/* navbar ends */
 
-/* hamburger icon starts*/
-#menu{
-  font-size: 3rem;
-  cursor: pointer;
-  color: rgb(24, 2, 63);
-  display: none;
-}
-@media(max-width:768px){
-  #menu{
-      display: block;
-  }
-  header .navbar{
-    position: fixed;
-    top: 6.5rem; right: -120%;
-    width: 75%;
-    height: 100%;
-    text-align: left;
-    align-items: flex-start;
-    background-color: #0e0f31;
-  }
-  header .navbar ul{
-    flex-flow: column;
-    padding: 1rem;
-  }
-  header .navbar ul li{
-    text-align: center;
-    width: 100%;
-    margin: 1rem 0;
-    border-radius: .5rem;
-    width: 26rem;
-  }
-  header .navbar ul li a{
-    display: block;
-    padding: 1rem;
-    text-align: left;
-    color: #fff;
-    font-size: 2rem;
-  }
-  header .navbar ul li a.active,
-  header .navbar ul li a:hover{
-    padding: 1rem;
-    color: #fff;
-    border-radius: .5rem;
-    border-bottom: .5rem solid #011aff;
-  }
-  .fa-times{
-    transform: rotate(180deg);
-  }
-  header .navbar.nav-toggle{
-    right: 0;
-  }
-}
-/* hamburger icon ends */
-
-/* work section starts */
-.work{
-  background: linear-gradient(to bottom, #000031, #00002c);
-  min-height: 100vh;
-  padding-top: 8rem;
-}
-.work h2{
-  color: #fff;
-  padding: 1rem;
-}
-.work .heading span{
-  color: rgb(255, 230, 0);
+// fetch projects start
+function getProjects() {
+    return fetch("projects.json")
+        .then(response => response.json())
+        .then(data => {
+            return data
+        });
 }
 
-/* Filter Buttons */
-.button-group{
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  margin: 3rem auto;
-  width: 80%;
-}
-.button-group .btn{
-  padding: 1.2rem 2.5rem;
-  border: 2px solid #ffd900;
-  background: transparent;
-  color: #ffd900;
-  border-radius: .5rem;
-  font-size: 1.5rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-.button-group .btn:hover,
-.button-group .btn.is-checked{
-  background: #ffd900;
-  color: #000;
+
+function showProjects(projects) {
+    let projectsContainer = document.querySelector(".work .box-container");
+    let projectsHTML = "";
+    projects.forEach(project => {
+        projectsHTML += `
+        <div class="grid-item ${project.category}">
+        <div class="box tilt" style="width: 380px; margin: 1rem">
+      <img draggable="false" src="/assets/images/projects/${project.image}.png" alt="project" />
+      <div class="content">
+        <div class="tag">
+        <h3>${project.name}</h3>
+        </div>
+        <div class="desc">
+          <p>${project.desc}</p>
+          <div class="btns">
+            <a href="${project.links.view}" class="btn" target="_blank"><i class="fas fa-eye"></i> View</a>
+            <a href="${project.links.code}" class="btn" target="_blank">Code <i class="fas fa-code"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>`
+    });
+    projectsContainer.innerHTML = projectsHTML;
+
+    // vanilla tilt.js
+    // VanillaTilt.init(document.querySelectorAll(".tilt"), {
+    //     max: 20,
+    // });
+    // vanilla tilt.js  
+
+    // /* ===== SCROLL REVEAL ANIMATION ===== */
+    const srtop = ScrollReveal({
+        origin: 'bottom',
+        distance: '80px',
+        duration: 1000,
+        reset: true
+    });
+
+    // /* SCROLL PROJECTS */
+    srtop.reveal('.work .box', { interval: 200 });
+
+    // isotope filter products
+    var $grid = $('.box-container').isotope({
+        itemSelector: '.grid-item',
+        layoutMode: 'fitRows',
+        masonry: {
+            columnWidth: 200
+        }
+    });
+
+    // filter items on button click
+    $('.button-group').on('click', 'button', function () {
+        $('.button-group').find('.is-checked').removeClass('is-checked');
+        $(this).addClass('is-checked');
+        var filterValue = $(this).attr('data-filter');
+        $grid.isotope({ filter: filterValue });
+    });
 }
 
-/* Projects Grid */
-.box-container{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  margin: 2rem;
-  justify-content: center;
-}
-.box-container .box{
-  flex: 1 1 35rem;
-  border-radius: .5rem;
-  box-shadow: 0 .5rem 1rem rgba(0,0,0,.3);
-  position: relative;
-  overflow: hidden;
-  height: 30rem;
-  background: #fff;
-  max-width: 40rem;
-}
-.box-container .box img{
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-}
-.box-container .box .content{
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  top: 85%; left: 0;
-  background: rgba(255, 255, 255, 0.95);
-  display: flex;
-  flex-direction: column;
-  transition: top 0.3s ease;
-}
-.box-container .box:hover .content{
-  top: 25%;
-}
-.box-container .box .content .tag{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  height: 4.5rem;
-  width: 100%;
-  padding-left: 1rem;
-  background: #ffd900;
-}
-.box-container .box .content .tag h3{
-  font-size: 2rem;
-  color: #000;
-}
-.desc {
-  margin: 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex-grow: 1;
-}
-.desc p{
-  font-size: 1.5rem;
-  color: #333;
-  margin-bottom: 1.5rem;
-  line-height: 1.6;
-}
+getProjects().then(data => {
+    showProjects(data);
+})
+// fetch projects end
 
-/* Tech Stack Tags */
-.tech-stack {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-  margin: 1.5rem 0;
-}
-.tech-tag {
-  background: rgba(37, 6, 173, 0.1);
-  color: #2506ad;
-  padding: 0.5rem 1.2rem;
-  border-radius: 2rem;
-  font-size: 1.2rem;
-  font-weight: 600;
-}
+// Start of Tawk.to Live Chat
+var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+(function () {
+    var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+    s1.async = true;
+    s1.src = 'https://embed.tawk.to/679e5c81825083258e0ee911/1ij19in3f';
+    s1.charset = 'UTF-8';
+    s1.setAttribute('crossorigin', '*');
+    s0.parentNode.insertBefore(s1, s0);
+})();
+// End of Tawk.to Live Chat
 
-.desc .btns{
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin-top: 2rem;
-  gap: 1rem;
+// disable developer mode
+document.onkeydown = function (e) {
+    if (e.keyCode == 123) {
+        return false;
+    }
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+        return false;
+    }
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+        return false;
+    }
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+        return false;
+    }
+    if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+        return false;
+    }
 }
-.desc .btns .btn{
-  line-height: 0;
-  display: inline;
-  padding: 1.2rem 2rem;
-  border-radius: .5rem;
-  font-size: 1.4rem;
-  color: #fff;
-  background: rgb(12, 12, 12);
-  flex: 1;
-  text-align: center;
-  transition: all 0.3s ease;
-}
-.desc .btns .btn:hover{
-  background: #310ae0f5;
-  transform: translateY(-2px);
-}
-.desc .btns .btn i {
-  margin-right: 0.5rem;
-}
-
-/* Project Categories */
-.box.web { border-left: 4px solid #28a745; }
-.box.fullstack { border-left: 4px solid #007bff; }
-.box.java { border-left: 4px solid #dc3545; }
-.box.automation { border-left: 4px solid #ffc107; }
-.box.ecommerce { border-left: 4px solid #6f42c1; }
-.box.basicweb { border-left: 4px solid #17a2b8; }
-
-/* Back to Home Button */
-.backbtn{
-  display: flex;
-  justify-content: center;
-  margin: 4rem 0 2rem;
-}
-.backbtn .btn {
-  position: relative;
-  line-height: 0;
-  padding: 1.6rem 3rem;
-  border-radius: .5em;
-  transition: 0.5s;
-  color: #fff;
-  border: 2px solid #fff;
-  box-shadow: 0px 5px 10px rgba(65, 84, 241, 0.4);
-  text-align: center;
-  background: transparent;
-}
-.backbtn .btn span {
-  font-weight: 600;
-  font-size: 1.7rem;
-  font-family: 'Nunito', sans-serif;
-}
-.backbtn .btn i {
-  margin-right: 0.5rem;
-  font-size: 1.5rem;
-  transition: 0.3s;
-}
-.backbtn .btn:hover{
-  background: #fff;
-  color: #000;
-}
-.backbtn .btn:hover i {
-  transform: translateX(-8px);
-}
-
-/* Responsive Design */
-@media screen and (max-width: 768px) {
-  .button-group{
-    width: 95%;
-    gap: 1rem;
-  }
-  .button-group .btn{
-    padding: 1rem 2rem;
-    font-size: 1.4rem;
-  }
-  .box-container{
-    margin: 1rem;
-    gap: 1.5rem;
-  }
-  .box-container .box{
-    flex: 1 1 100%;
-    max-width: 100%;
-    height: 28rem;
-  }
-}
-
-@media screen and (max-width: 450px) {
-  .work .button-group{
-    width: 100%;
-  }
-  .work .box-container{
-    margin: 0rem;
-  }
-  .box-container .box{
-    height: 26rem;
-  }
-  .desc .btns{
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .desc .btns .btn{
-    width: 100%;
-  }
-}
-
-/* common media queries starts*/
-@media(max-width:450px){
-  html{
-    font-size: 55%;
-  }
-  body{
-    padding-right: 0;
-  }
-  section{
-    padding: 2rem;
-  }
-}
-/* common media queries ends*/
-
-/* scroll top starts */
-#scroll-top{
-  position: fixed;
-  top: -140%;
-  right: 2rem;
-  padding: 1rem 1.5rem;
-  font-size: 2rem;
-  background: #ffae00;
-  color: rgb(13, 0, 44);
-  border-radius: 5rem;
-  transition: 1s linear;
-  z-index: 1000;
-}
-#scroll-top.active{
-  top: calc(100% - 12rem);
-}
-/* scroll top ends */
